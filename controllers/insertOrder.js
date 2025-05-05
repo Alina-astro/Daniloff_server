@@ -1,0 +1,25 @@
+import Order from "../models/Order.js";
+
+export const insertOrder = async (req, res) => {
+    
+    const data = req.body;
+    console.log('Received data:', data);
+
+    try {
+        const newOrder = new Order({
+            trackingCode: data.trackingCode,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            zip: data.zip,
+        });
+
+        await newOrder.save();
+        return res.status(201).json({ message: 'Order saved successfully', order: newOrder });
+    }
+
+    catch (err) {
+        console.error('Error adding request:', err);
+        return res.status(500).json({ message: 'Error saving order', error: err });
+    }
+};
