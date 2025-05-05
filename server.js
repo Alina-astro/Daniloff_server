@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import orderRoute from './routes/orderRoute.js';
 
 const app = express();
-const port = 3005;
+const port = process.env.PORT || 3000;
 
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
