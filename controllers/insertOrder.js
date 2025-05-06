@@ -7,11 +7,11 @@ export const insertOrder = async (req, res) => {
 
     try {
         const newOrder = new Order({
-            trackingCode: data.TrackingCode,
+            trackingCode: data.TrackingCode, // регистр изменила с мал на бол
             name: data.Name,
             email: data.Email,
             phone: data.Phone,
-            zip: data.Zip,
+            zip: data.Zipcode,
             plumbingType: data.PlumbingType,
             material: data.Material,
             defects: data.Defects,
