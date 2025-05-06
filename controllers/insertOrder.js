@@ -7,11 +7,16 @@ export const insertOrder = async (req, res) => {
 
     try {
         const newOrder = new Order({
-            trackingCode: data.trackingCode,
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            zip: data.zip,
+            trackingCode: data.TrackingCode,
+            name: data.Name,
+            email: data.Email,
+            phone: data.Phone,
+            zip: data.Zip,
+            plumbingType: data.PlumbingType,
+            material: data.Material,
+            defects: data.Defects,
+            comment: data.Comment
+
         });
 
         await newOrder.save();

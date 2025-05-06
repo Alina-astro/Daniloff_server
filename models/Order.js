@@ -5,8 +5,12 @@ const orderSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: String, required: true },
-    zip: { type: String, required: true }
+    phone: { type: String, required: false },
+    zip: { type: String, required: true },
+    plumbingType: { type: String, required: true },
+    material: { type: String, required: false },
+    defects: { type: Array, required: false },
+    comment: { type: String, required: false }
 });
 
 const Order = mongoose.model('Order', orderSchema);
