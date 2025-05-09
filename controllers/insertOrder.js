@@ -1,13 +1,13 @@
 import Order from "../models/Order.js";
 
 export const insertOrder = async (req, res) => {
-    
+
     const data = req.body;
     console.log('Received data:', data);
 
     try {
         const newOrder = new Order({
-            trackingCode: data.TrackingCode, // регистр изменила с мал на бол
+            trackingCode: data.TrackingCode,
             name: data.Name,
             email: data.Email,
             phone: data.Phone,
@@ -15,7 +15,9 @@ export const insertOrder = async (req, res) => {
             plumbingType: data.PlumbingType,
             material: data.Material,
             defects: data.Defects,
-            comment: data.Comment
+            comment: data.Comment,
+            status: 'not_processed',  // по умолчанию
+            payment: 'unpaid',        // по умолчанию
 
         });
 

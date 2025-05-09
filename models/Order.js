@@ -10,7 +10,9 @@ const orderSchema = new mongoose.Schema({
     plumbingType: { type: String, required: true },
     material: { type: String, required: false },
     defects: { type: Array, required: false },
-    comment: { type: String, required: false }
+    comment: { type: String, required: false },
+    status: { type: String, default: 'not_processed' },   // новое поле
+    payment: { type: String, default: 'unpaid' },          // новое поле
 });
 
 const Order = mongoose.model('Order', orderSchema);

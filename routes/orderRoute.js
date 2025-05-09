@@ -1,16 +1,14 @@
 import express from 'express';
 import multer from 'multer';
 import { insertOrder } from '../controllers/insertOrder.js';
+import { getOrders } from '../controllers/getOrders.js';
+import { updateOrder } from '../controllers/updateOrder.js';
 
 const router = express.Router();
 const upload = multer(); // Можно настроить, если надо сохранять файлы
 
-// router.post('/order', upload.none(), (req, res) => {
-//   console.log('Body:', req.body);
-//   // req.files — если будет upload.any() или upload.array()
-//   res.status(200).json({ message: 'Form received successfully' });
-// });
-
 router.post('/order', upload.none(), insertOrder);
+router.get('/order', getOrders); // получить заявки с фильтрами
+router.put('/order/:id', updateOrder); // обновить заявку
 
 export default router;
