@@ -22,6 +22,12 @@ export const getOrders = async (req, res) => {
 
     const orders = await Order.find(query).sort({ createdAt: -1 });
 
+    if (to) {
+      const toDate = new Date(to);
+      toDate.setHours(23, 59, 59, 999); // включаем весь день до конца
+      query.createdAt.$lte = toDate;
+    }
+
     res.status(200).json({ orders });
   } catch (err) {
     console.error('Error fetching orders:', err);
