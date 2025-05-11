@@ -9,7 +9,12 @@ export const getOrders = async (req, res) => {
     if (from || to) {
       query.createdAt = {};
       if (from) query.createdAt.$gte = new Date(from);
-      if (to) query.createdAt.$lte = new Date(to);
+      if (to) {
+        const toDate = new Date(to);
+        toDate.setHours(23, 59, 59, 999); // включаем весь день до конца
+        query.createdAt.$lte = toDate;
+      }
+
     }
 
     if (status) {
@@ -21,12 +26,6 @@ export const getOrders = async (req, res) => {
     }
 
     const orders = await Order.find(query).sort({ createdAt: -1 });
-
-    if (to) {
-      const toDate = new Date(to);
-      toDate.setHours(23, 59, 59, 999); // включаем весь день до конца
-      query.createdAt.$lte = toDate;
-    }
 
     res.status(200).json({ orders });
   } catch (err) {
