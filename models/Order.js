@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { updateOrder } from '../controllers/updateOrder.js';
-router.put('/order/:id', updateOrder);
+// import { updateOrder } from '../controllers/updateOrder.js';
+// router.put('/order/:id', updateOrder);
 
 const orderSchema = new mongoose.Schema({
     trackingCode: { type: String, required: false },
